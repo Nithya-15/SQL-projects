@@ -118,7 +118,7 @@
 
 ---
 
-**Query #1**
+**Query #1 Data Cleaning - Customer_orders table**
 
     UPDATE pizza_runner.customer_orders
     SET exclusions=CASE
@@ -135,7 +135,7 @@
 There are no results to be displayed.
 
 ---
-**Query #2**
+**Query #2 Data Cleaning - runner_orders table**
 
     UPDATE pizza_runner.runner_orders
     SET pickup_time=CASE
@@ -160,7 +160,7 @@ There are no results to be displayed.
 There are no results to be displayed.
 
 ---
-**Query #3**
+**Query #3 How many pizzas were ordered?**
 
     SELECT COUNT(pizza_id) as No_of_pizzas_ordered
     FROM pizza_runner.customer_orders;
@@ -170,7 +170,7 @@ There are no results to be displayed.
 | 14                   |
 
 ---
-**Query #4**
+**Query #4 How many unique customer orders were made?**
 
     SELECT COUNT(DISTINCT order_id) as No_of_unique_customer_orders
     FROM pizza_runner.customer_orders;
@@ -180,7 +180,7 @@ There are no results to be displayed.
 | 10                           |
 
 ---
-**Query #5**
+**Query #5 How many successful orders were delivered by each runner?**
 
     SELECT runner_id, COUNT(order_id) as No_of_successful_orders
     FROM pizza_runner.runner_orders
@@ -194,7 +194,7 @@ There are no results to be displayed.
 | 3         | 1                       |
 
 ---
-**Query #6**
+**Query #6 How many of each type of pizza was delivered?**
 
     SELECT pizza_name, COUNT(A.order_id)
     FROM pizza_runner.customer_orders a
@@ -209,7 +209,7 @@ There are no results to be displayed.
 | Vegetarian | 3     |
 
 ---
-**Query #7**
+**Query #7 How many Vegetarian and Meatlovers were ordered by each customer?**
 
     SELECT customer_id, pizza_name, COUNT(order_id)
     FROM pizza_runner.customer_orders A
@@ -229,7 +229,7 @@ There are no results to be displayed.
 | 105         | Vegetarian | 1     |
 
 ---
-**Query #8**
+**Query #8 What was the maximum number of pizzas delivered in a single order?**
 
     SELECT MAX(count) as max_order_count FROM
     (SELECT A.order_id, COUNT(A.order_id) as count
@@ -244,7 +244,7 @@ There are no results to be displayed.
 | 3               |
 
 ---
-**Query #9**
+**Query #9 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?**
 
     SELECT customer_id, SUM(CASE 
               WHEN (exclusions IS NULL AND extras IS NULL) THEN 1
@@ -269,7 +269,7 @@ There are no results to be displayed.
 | 105         | 0          | 1                  |
 
 ---
-**Query #10**
+**Query #10 How many pizzas were delivered that had both exclusions and extras?**
 
     SELECT customer_id, SUM(CASE 
                             WHEN (exclusions IS NOT NULL AND EXTRAS IS NOT NULL) THEN 1
@@ -290,7 +290,7 @@ There are no results to be displayed.
 | 105         | 0                      |
 
 ---
-**Query #11**
+**Query #11 What was the total volume of pizzas ordered for each hour of the day?**
 
     SELECT EXTRACT(hour FROM order_time) AS Hours,
            count(order_id) AS Number_of_pizzas_ordered,
@@ -309,7 +309,7 @@ There are no results to be displayed.
 | 23    | 3                        | 21.43                    |
 
 ---
-**Query #12**
+**Query #12 What was the volume of orders for each day of the week?**
 
     SELECT EXTRACT(day from order_time) as each_Day,
            count(order_id) as Number_of_pizzas_ordered,

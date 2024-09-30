@@ -56,8 +56,8 @@
 
 ---
 
-**Query #1**
--- 1. What is the total amount each customer spent at the restaurant?
+**Query #1 What is the total amount each customer spent at the restaurant?**
+
 
     SELECT
       	product_id,
@@ -74,8 +74,8 @@
 | 1          | sushi        | 10    |
 
 ---
-**Query #2**
--- 2. How many days has each customer visited the restaurant?
+**Query #2 How many days has each customer visited the restaurant?**
+
 
     SELECT customer_id, COUNT(DISTINCT order_date) as no_of_days
     FROM dannys_diner.sales
@@ -88,8 +88,8 @@
 | C           | 2          |
 
 ---
-**Query #3**
--- 3. What was the first item from the menu purchased by each customer?
+**Query #3 What was the first item from the menu purchased by each customer?**
+
 
     WITH rank_table as
     (
@@ -113,8 +113,7 @@
 | C           | ramen        |
 
 ---
-**Query #4**
--- 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+**Query #4 What is the most purchased item on the menu and how many times was it purchased by all customers?**
 
     SELECT product_name, COUNT(A.product_id) as count
     FROM dannys_diner.sales A
@@ -129,8 +128,8 @@
 | ramen        | 8     |
 
 ---
-**Query #5**
--- 5. Which item was the most popular for each customer?
+**Query #5 Which item was the most popular for each customer?**
+
 
     WITH table_2 as
     (WITH table_1 as
@@ -154,8 +153,7 @@
 | C           | ramen        |
 
 ---
-**Query #6**
--- 6. Which item was purchased first by the customer after they became a member?
+**Query #6 Which item was purchased first by the customer after they became a member?** 
 
     With table_3 as
     (With table_2 as
@@ -180,8 +178,7 @@
 | B           | sushi        |
 
 ---
-**Query #7**
--- 7. Which item was purchased just before the customer became a member?
+**Query #7 Which item was purchased just before the customer became a member?** 
 
     With table_3 as
     (With table_2 as
@@ -207,8 +204,7 @@
 | B           | sushi        |
 
 ---
-**Query #8**
--- 8. What is the total items and amount spent for each member before they became a member?
+**Query #8 What is the total items and amount spent for each member before they became a member?** 
 
     With table_2 as
     (With table_1 as
@@ -230,9 +226,8 @@
 | B           | 40  |
 
 ---
-**Query #9**
-
--- 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+**Query #9 If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?**
+  
 
     With table_2 as
     (With table_1 as
@@ -257,8 +252,7 @@
 | C           | 360 |
 
 ---
-**Query #10**
--- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+**Query #10 In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?** 
 
     With table_1 as
     (SELECT *, 
